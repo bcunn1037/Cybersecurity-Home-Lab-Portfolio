@@ -15,8 +15,6 @@ Every artifact follows the same discipline, so a non-technical recruiter and a t
 - **Scope first:** what the project does and, just as important, what it deliberately does not do.
 - **Each control as a short story:** the risk, the change I made, and how I verified it worked.
 - **Framework tags:** every control is mapped to recognized standards (CIS Controls v8, NIST SP 800-53 Rev. 5, and MITRE ATT&CK).
-- **Controls deliberately not applied:** the judgment calls, documented with the same rigor as the work I did.
-
 ---
 
 ## Artifacts
@@ -24,7 +22,7 @@ Every artifact follows the same discipline, so a non-technical recruiter and a t
 | # | Project | Focus | Frameworks | Status |
 |---|---------|-------|------------|--------|
 | 1 | [Parrot Workstation Hardening](00_parrot-hardening) | Host hardening measured with Lynis: firewall, DNS resilience, patching, least-privilege file permissions | CIS, NIST 800-53 | Published |
-| 2 | SIEM Deployment & Detection (Wazuh) | Stand up a SIEM and detect, then attribute, an SSH brute-force attack | CIS, NIST 800-53, MITRE ATT&CK | In progress |
+| 2 | [SIEM Deployment & Detection (Wazuh)](01_SIEM-Detection) | Stand up a SIEM and detect, then attribute, an SSH brute-force attack | CIS, NIST 800-53, MITRE ATT&CK | Published |
 | 3 | Active Directory Hardening | Windows domain hardening and attack detection | CIS, NIST 800-53, MITRE ATT&CK | Planned |
 | 4 | Cloud Security | Cloud misconfiguration identification and remediation | CIS, NIST 800-53 | Planned |
 | 5 | Vulnerability Management | Scanning, prioritization, and a remediation workflow | NIST 800-53, MITRE ATT&CK | Planned |
