@@ -6,7 +6,7 @@
 **Audience:** SOC / blue-team hiring reviewers (GRC-readable)
 **Frameworks:** CIS Debian Benchmark (spine) + NIST SP 800-53 Rev. 5 control tags
 
-📄 **[Download the full PDF report](Artifact-1-Parrot-Hardening.pdf)**
+📄 **[Download the full PDF report](pdf/Artifact-1-Parrot-Hardening.pdf)**
 
 ---
 
@@ -56,7 +56,7 @@ Equally important is the **counter-discipline**: on a box whose purpose is unusu
 
 **Baseline result (2026-08-17):** hardening index **64**, 274 tests, **3 warnings** (`PKGS-7392` vulnerable packages, `NETW-2705` single nameserver, `FIRE-4512` firewall loaded with no ruleset), and 45 suggestions.
 
-![Baseline Lynis values from the archived report: version 3.1.4, hardening_index=64, three warnings](A1-S18-baseline-index-warnings-grep.png)
+![Baseline Lynis values from the archived report: version 3.1.4, hardening_index=64, three warnings](images/A1-S18-baseline-index-warnings-grep.png)
 
 ---
 
@@ -78,8 +78,8 @@ No inbound allow-rules were needed: the box runs no inbound services (SSH is off
 
 **Framework tags.** NIST **SC-7(5)** "deny by default, allow by exception" (direct match), supporting **CM-7** least functionality; CIS host-based firewall (ufw) family.
 
-![Before: empty ruleset, iptables all-ACCEPT, the FIRE-4512 condition](A1-S23-firewall-before-empty-ruleset.png)
-![After: ufw active, deny incoming / allow outgoing, enabled on boot](A1-S23-firewall-after-ufw-active.png)
+![Before: empty ruleset, iptables all-ACCEPT, the FIRE-4512 condition](images/A1-S23-firewall-before-empty-ruleset.png)
+![After: ufw active, deny incoming / allow outgoing, enabled on boot](images/A1-S23-firewall-after-ufw-active.png)
 
 ---
 
@@ -102,8 +102,8 @@ Quad9 was chosen because it performs DNSSEC validation and blocks known-maliciou
 
 **Framework tags.** NIST **SC-22** (fault-tolerant name resolution) primary; **SC-21** (recursive resolver DNSSEC validation) supporting; SC-20 N/A (we are a client, not an authoritative server). No clean CIS mapping exists for "two nameservers": an honest gap where NIST carries the control.
 
-![Before: single nameserver, NetworkManager-generated](A1-S25-dns-before-resolv-conf-single-nameserver.png)
-![After: two Quad9 nameservers pinned](A1-S25-dns-after-resolv-conf-quad9.png)
+![Before: single nameserver, NetworkManager-generated](images/A1-S25-dns-before-resolv-conf-single-nameserver.png)
+![After: two Quad9 nameservers pinned](images/A1-S25-dns-after-resolv-conf-quad9.png)
 
 ---
 
@@ -126,8 +126,8 @@ The transaction upgraded 297 packages, installed 7 (a new kernel `linux-image-7.
 
 **Framework tags.** NIST **SI-2** (Flaw Remediation) primary, **RA-5** (Vulnerability Monitoring & Scanning) supporting; maps cleanly to CIS patch-management guidance.
 
-![Before: apt reports 297 packages upgradable](A1-S26-patch-before-apt-update-297-upgradable.png)
-![After: report shows index 66, warnings 0, suggestions 44](A1-S26-patch-after-counts-index66-warn0-sugg44.png)
+![Before: apt reports 297 packages upgradable](images/A1-S26-patch-before-apt-update-297-upgradable.png)
+![After: report shows index 66, warnings 0, suggestions 44](images/A1-S26-patch-after-counts-index66-warn0-sugg44.png)
 
 ---
 
@@ -145,8 +145,8 @@ UMASK 027
 
 **Framework tags.** NIST **AC-6** (Least Privilege) primary, **CM-6** (Configuration Settings) supporting; CIS "ensure default user umask is 027 or more restrictive."
 
-![Before: no UMASK line; ENCRYPT_METHOD yescrypt](A1-S27-auth-before-login-defs-yescrypt.png)
-![After: clean UMASK 027 in /etc/login.defs](A1-S27-auth-after-login-defs-umask027.png)
+![Before: no UMASK line; ENCRYPT_METHOD yescrypt](images/A1-S27-auth-before-login-defs-yescrypt.png)
+![After: clean UMASK 027 in /etc/login.defs](images/A1-S27-auth-after-login-defs-umask027.png)
 
 ---
 
