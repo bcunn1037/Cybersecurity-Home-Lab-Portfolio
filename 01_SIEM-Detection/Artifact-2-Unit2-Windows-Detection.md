@@ -52,9 +52,8 @@ The existing Wazuh manager (10.0.2.10) and the Unit 1 Ubuntu victim remain. Host
 
 **Verification.** The dashboard Agents view showed windows-victim, ID 002, IP 10.0.2.5, OS Windows 11 Enterprise LTSC 2024 Evaluation, agent v4.14.7, **status active (green)** (A2-S09).
 
-![Windows agent active in the Wazuh dashboard (A2-S09)](A2-S09-windows-agent-active-dashboard.jpg)
 
-![Figure A2-S09: windows-victim agent active (green) in the Wazuh dashboard Agents view.](A2-S09-windows-agent-active-dashboard.jpg)
+![Figure A2-S09: windows-victim agent active (green) in the Wazuh dashboard Agents view.](images/A2-S09-windows-agent-active-dashboard.jpg)
 
 **Framework tags.** NIST **AU-2** (event logging), **AU-12** (audit record generation): the agent is the source of Windows audit records; **SI-4** supporting. CIS **Control 8** (Audit Log Management).
 
@@ -66,13 +65,12 @@ The existing Wazuh manager (10.0.2.10) and the Unit 1 Ubuntu victim remain. Host
 
 **Verification.** Locally, Event Viewer showed Sysmon Event ID 1 (Process Create) events accumulating (A2-S10). On the SIEM, a Threat Hunting search for sysmon returned a live-growing cluster of hits (A2-S10b), and an expanded event confirmed the data was genuinely Sysmon-sourced: data.win.system.providerName = **Microsoft-Windows-Sysmon**, message "Process Create:" (A2-S10c). This proves the full path: Sysmon on the host, the agent shipping its channel, the manager indexing it.
 
-![Sysmon events arriving in the Wazuh dashboard (A2-S10b)](A2-S10b-sysmon-events-in-dashboard.jpg)
 
-![Figure A2-S10: Sysmon Event ID 1 (Process Create) events accumulating in Event Viewer on the victim.](A2-S10-sysmon-installed.jpg)
+![Figure A2-S10: Sysmon Event ID 1 (Process Create) events accumulating in Event Viewer on the victim.](images/A2-S10-sysmon-installed.jpg)
 
-![Figure A2-S10b: Sysmon events reaching and indexed on the manager (Threat Hunting search for "sysmon").](A2-S10b-sysmon-events-in-dashboard.jpg)
+![Figure A2-S10b: Sysmon events reaching and indexed on the manager (Threat Hunting search for "sysmon").](images/A2-S10b-sysmon-events-in-dashboard.jpg)
 
-![Figure A2-S10c: Expanded event confirming data.win.system.providerName = Microsoft-Windows-Sysmon.](A2-S10c-sysmon-event-providername.jpg)
+![Figure A2-S10c: Expanded event confirming data.win.system.providerName = Microsoft-Windows-Sysmon.](images/A2-S10c-sysmon-event-providername.jpg)
 
 **Framework tags.** NIST **AU-2 / AU-12** (richer audit generation), **SI-4** (system monitoring). CIS **Control 8**.
 
@@ -95,13 +93,11 @@ Each failed attempt causes Windows to write a **4625** (failed logon) record, wh
 
 The expanded event attributes the attack (A2-S11a): data.win.eventdata.ipAddress **10.0.2.6** (the Parrot attacker), targetUserName **vic-computer** (the target account), subStatus **0xc000006a** (wrong password, confirming failed guesses), authenticationPackageName NTLM, logonType 3. A useful distinction for an analyst: agent.ip 10.0.2.5 is the victim that reported the event, while ipAddress 10.0.2.6 is the source that performed the attack.
 
-![RDP brute-force detected: the 4625 cluster and the level-10 rule-60204 correlation alert (A2-S11)](A2-S11-rdp-bruteforce-detection.jpg)
 
-![Attribution: expanded 4625 event showing attacker ipAddress 10.0.2.6 and target vic-computer (A2-S11a)](A2-S11a-rdp-event-srcip-attribution.jpg)
 
-![Figure A2-S11: RDP brute-force detected. 11 failed logons spike at the attack time; rule 60204 "Multiple Windows Logon Failures" (level 10) is the correlation alert.](A2-S11-rdp-bruteforce-detection.jpg)
+![Figure A2-S11: RDP brute-force detected. 11 failed logons spike at the attack time; rule 60204 "Multiple Windows Logon Failures" (level 10) is the correlation alert.](images/A2-S11-rdp-bruteforce-detection.jpg)
 
-![Figure A2-S11a: Expanded 4625 event attributing the attack: data.win.eventdata.ipAddress 10.0.2.6 (Parrot), targetUserName vic-computer, subStatus 0xc000006a (wrong password).](A2-S11a-rdp-event-srcip-attribution.jpg)
+![Figure A2-S11a: Expanded 4625 event attributing the attack: data.win.eventdata.ipAddress 10.0.2.6 (Parrot), targetUserName vic-computer, subStatus 0xc000006a (wrong password).](images/A2-S11a-rdp-event-srcip-attribution.jpg)
 
 **Framework tags.** NIST **SI-4** (detection), **AC-7** (unsuccessful logon attempts), **AU-6/AU-14** (audit review/analysis), **IR-4** (incident handling, the alert is the trigger). MITRE ATT&CK **T1110** (Brute Force). CIS **Control 8** (Audit Log Management).
 

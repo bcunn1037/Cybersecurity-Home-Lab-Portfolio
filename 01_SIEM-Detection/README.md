@@ -79,8 +79,8 @@ sudo bash ./wazuh-install.sh -a
 
 **Framework tags.** NIST **AU-6** (audit review, analysis & reporting) and **SI-4** (system monitoring): a SIEM is the mechanism for both; CIS **Control 8** (Audit Log Management).
 
-![A2-S05: Wazuh dashboard login page served over HTTPS at 127.0.0.1:8443](A2-S05-wazuh-dashboard-login.png)
-![A2-S05: authenticated overview, SIEM live, no agents yet](A2-S05-wazuh-dashboard-overview.png)
+![A2-S05: Wazuh dashboard login page served over HTTPS at 127.0.0.1:8443](images/A2-S05-wazuh-dashboard-login.png)
+![A2-S05: authenticated overview, SIEM live, no agents yet](images/A2-S05-wazuh-dashboard-overview.png)
 
 ### 4.2 Isolated lab network + stable addressing
 
@@ -120,7 +120,7 @@ The agent connects *outbound* to the manager (TCP 1514/1515); the manager does n
 
 **Framework tags.** NIST **AU-2** (event logging) and **AU-12** (audit record generation): the agent is the source of endpoint audit records; **SI-4** supporting; CIS **Control 8**.
 
-![A2-S06: agent ubuntu-victim active on the dashboard](A2-S06-wazuh-agent-active-dashboard.png)
+![A2-S06: agent ubuntu-victim active on the dashboard](images/A2-S06-wazuh-agent-active-dashboard.png)
 
 ### 4.4 Detection use-case: SSH brute-force
 
@@ -144,8 +144,8 @@ The expanded alert **attributes** the attack: `data.srcip 10.0.2.15` (the attack
 
 **Framework tags.** NIST **SI-4** (monitoring/detection of the attack), **AU-6/AU-14** (analysis / session audit), **AC-7** (unsuccessful logon attempts), **IR-4** (incident handling, the alert is the trigger); MITRE ATT&CK **T1110**; CIS **Control 8** (Audit Log Management) + **Control 13** (Network Monitoring & Defense).
 
-![A2-S07: Threat Hunting events, rule 5763 brute-force alerts timed to the hydra runs](A2-S07-ssh-bruteforce-detection-5763.png)
-![A2-S08: expanded rule-5763 alert, srcip 10.0.2.15, MITRE T1110, NIST SI.4/AU.14/AC.7](A2-S08-rule5763-expanded-mitre-t1110.png)
+![A2-S07: Threat Hunting events, rule 5763 brute-force alerts timed to the hydra runs](images/A2-S07-ssh-bruteforce-detection-5763.png)
+![A2-S08: expanded rule-5763 alert, srcip 10.0.2.15, MITRE T1110, NIST SI.4/AU.14/AC.7](images/A2-S08-rule5763-expanded-mitre-t1110.png)
 
 ---
 
