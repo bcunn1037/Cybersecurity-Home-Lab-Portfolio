@@ -39,5 +39,5 @@ Only published projects are linked. In-progress and planned projects will be lin
 
 ---
 
-## A note on evidence handling
+
 
