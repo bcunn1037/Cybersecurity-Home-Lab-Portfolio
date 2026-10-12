@@ -1,0 +1,49 @@
+# ============================================================
+# Public portfolio .gitignore (professional, curated).
+#
+# Policy: publish ONLY clean, lab-related writeups and the
+# polished evidence that supports them. Everything internal
+# (journals, tracking logs, scratch, planning, the study vault)
+# stays private.
+#
+# Strategy: ignore everything at the top level by default, allow
+# the two artifact folders, then trim the internal bits back out.
+# ============================================================
+
+# 1) Ignore every top-level entry by default.
+/*
+
+# 2) Repo meta files.
+!/.gitignore
+!/README.md
+
+# 3) Allow the two artifact folders (contents come along, then
+#    get trimmed by the exclusions below).
+!/00_parrot-hardening/
+!/01_SIEM-Detection/
+
+# 4) Keep INTERNAL / process / tracking / scratch material OUT,
+#    even inside the allowed artifact folders:
+
+#    Lab journals, screenshot logs, evidence indexes
+**/journal.md
+**/SCREENSHOT-LOG.md
+**/EVIDENCE-INDEX.md
+**/NEW-CHAT-PROMPT.md
+
+#    Scratch exercises and internal procedure notes
+01_SIEM-Detection/scripts/
+01_SIEM-Detection/procedures/
+
+#    Raw, unprocessed session captures and the stray duplicate folder
+00_parrot-hardening/Screenshots/raw-session-captures-*/
+01_SIEM-Detection/01_SIEM-Detection/
+
+# 5) OS cruft and anything credential-shaped.
+Thumbs.db
+desktop.ini
+.DS_Store
+*.key
+*.pem
+*secret*
+*credential*
