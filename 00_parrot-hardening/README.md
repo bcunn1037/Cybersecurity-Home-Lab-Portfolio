@@ -3,7 +3,6 @@
 **Analyst:** Brandon Cunningham (`analystcunn`) · Google Cybersecurity Certificate
 **Date:** 2026-08-20
 **Environment:** Parrot Security 7.3 "echo" (Debian 13.5 base), VirtualBox VM, LUKS full-disk encryption
-**Audience:** SOC / blue-team hiring reviewers (GRC-readable)
 **Frameworks:** CIS Debian Benchmark (spine) + NIST SP 800-53 Rev. 5 control tags
 
 📄 **[Download the full PDF report](Artifact-1-Parrot-Hardening.pdf)**
