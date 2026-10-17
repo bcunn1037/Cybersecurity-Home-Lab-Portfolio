@@ -39,6 +39,5 @@ Only published projects are linked. In-progress and planned projects will be lin
 
 ---
 
-## A note on evidence handling
 
-Only polished reports, their supporting screenshots, and PDF copies are published here. Raw journals, working notes, and any lab credentials are deliberately kept private and out of this public repository, which is itself a small demonstration of good data-handling discipline.
+
