@@ -22,7 +22,7 @@ Every artifact follows the same discipline, so a non-technical recruiter and a t
 | # | Project | Focus | Frameworks | Status |
 |---|---------|-------|------------|--------|
 | 1 | [Parrot Workstation Hardening](00_parrot-hardening) | Host hardening measured with Lynis: firewall, DNS resilience, patching, least-privilege file permissions | CIS, NIST 800-53 | Published |
-| 2 | [SIEM Deployment & Detection (Wazuh)](01_SIEM-Detection) | Stand up a SIEM and detect, then attribute, an SSH brute-force attack | CIS, NIST 800-53, MITRE ATT&CK | Published |
+| 2 | [SIEM Deployment, Detection & Response (Wazuh)](01_SIEM-Detection) | Stand up a SIEM; detect and attribute SSH and RDP brute-force attacks, then auto-block the attacker and harden the endpoint | CIS, NIST 800-53, MITRE ATT&CK | Published |
 | 3 | Active Directory Hardening | Windows domain hardening and attack detection | CIS, NIST 800-53, MITRE ATT&CK | Planned |
 | 4 | Cloud Security | Cloud misconfiguration identification and remediation | CIS, NIST 800-53 | Planned |
 | 5 | Vulnerability Management | Scanning, prioritization, and a remediation workflow | NIST 800-53, MITRE ATT&CK | Planned |
