@@ -1,6 +1,7 @@
 # Artifact 2: SIEM Deployment and Detection with Wazuh
 
 A Wazuh SIEM deployed from scratch in an isolated VirtualBox home lab, then used to detect, attribute, and respond to real attacks against monitored endpoints.
+
 ## Reports
 
 **Unit 1: SSH brute-force detection (Linux)** &rarr; [Artifact-2-Unit1-SSH-Detection.md](Artifact-2-Unit1-SSH-Detection.md) ([PDF](pdf/Artifact-2-SIEM-Detection.pdf))
@@ -14,4 +15,11 @@ Closes the loop on the RDP brute-force: adds automated containment (Wazuh active
 
 ## How this folder is organized
 
-- `images/` holds t
+- `images/` holds the evidence screenshots the reports reference.
+- `pdf/` holds downloadable PDF versions of the reports.
+
+## At a glance
+
+- **Platform:** Wazuh 4.14.7 all-in-one on Ubuntu Server 24.04.4 (agent upgraded to 4.14.9 on the Windows endpoint); monitored Ubuntu and Windows 11 endpoints; Parrot attacker; isolated VirtualBox NAT Network.
+- **Frameworks:** CIS Controls v8, NIST SP 800-53 Rev. 5, MITRE ATT&CK.
+- **Analyst:** Brandon Cunningham (Google Cybersecurity Certificate).
