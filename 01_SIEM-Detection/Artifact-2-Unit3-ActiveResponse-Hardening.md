@@ -1,4 +1,4 @@
-# Artifact 2, Unit 2: Active Response and Windows Hardening
+# Artifact 2, Unit 3: Active Response and Windows Hardening
 
 **Analyst:** Brandon Cunningham (analystcunn) | Google Cybersecurity Certificate
 **Date:** 2026-10-16
