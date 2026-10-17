@@ -59,7 +59,17 @@ Same isolated LabNet (10.0.2.0/24) as the detection phase, with two changes from
 
 This tells the manager: when rule 60204 (the brute-force correlation) fires, run the netsh block on the agent that raised the alert, and auto-remove it after 120 seconds. The field is rules_id; the singular form is rejected by the configuration parser.
 
+![A2-S12a: the active-response block added to ossec.conf, the netsh command tied to rule 60204 with a 120-second timeout.](images/A2-S12a-active-response-netsh-rule60204.jpg)
+
+![A2-S12a2: the Wazuh manager restarts cleanly with the active-response config loaded.](images/A2-S12a2-manager-active-response-loaded.jpg)
+
 **Verification (and a real fault).** The first live test fired the response but did not block. The agent active-response log recorded "Cannot read 'srcip' from data" and no firewall rule was created (A2-S12d). This is addressed in 4.2.
+
+![A2-S12b: the controlled RDP brute-force re-run from the Parrot attacker (hydra, all-wrong passwords).](images/A2-S12b-attack-hydra-rerun.jpg)
+
+![A2-S12c: the active response fires on rule 60204, the manager orders the netsh block on the agent.](images/A2-S12c-active-response-netsh-fired.jpg)
+
+![A2-S12d: the fault, the agent active-response log shows "Cannot read 'srcip' from data" and no firewall rule is created.](images/A2-S12d-srcip-not-mapped.jpg)
 
 **Framework tags.** NIST IR-4 (incident handling), SC-7 (boundary protection, host firewall), SI-4 (monitoring). CIS Control 13 (Network Monitoring and Defense). MITRE ATT&CK mitigation of T1110 (Brute Force).
 
@@ -71,6 +81,12 @@ This tells the manager: when rule 60204 (the brute-force correlation) fires, run
 
 **Verification.** After the upgrade, a re-run of the brute-force produced a live Windows Firewall rule blocking the attacker: RemoteIP 10.0.2.6/32 (A2-S12f), with the agent active-response log showing a clean netsh add and the 120-second timeout delete, and no srcip error (A2-S12g). Agent version confirmed as 4.14.9 and connected (A2-S12e).
 
+![A2-S12e: the Windows agent upgraded in place to 4.14.9 and reconnected to the manager.](images/A2-S12e-agent-patched-4.14.9.jpg)
+
+![A2-S12f: the fix verified, a live Windows Firewall rule blocking the attacker at RemoteIP 10.0.2.6/32.](images/A2-S12f-firewall-autoblock-10.0.2.6.jpg)
+
+![A2-S12g: the agent active-response log now shows a clean netsh add and the 120-second timeout delete, with no srcip error.](images/A2-S12g-active-response-success.jpg)
+
 **Framework tags.** NIST SI-2 (flaw remediation). CIS Control 7 (Continuous Vulnerability Management). This stage is as much a portfolio point as the block itself: diagnose from a log line, map to the upstream defect, apply the vendor fix, verify.
 
 ### 4.3 Account lockout hardening
@@ -81,6 +97,14 @@ This tells the manager: when rule 60204 (the brute-force correlation) fires, run
 
 **Verification.** A live re-run of the brute-force from Parrot locked the targeted account after the threshold was crossed. Windows Security event 4740 ("A user account was locked out") recorded the lockout, naming the locked account (vic-computer) and the attacker host (Caller Computer Name: parrot) (A2-S13a, A2-S13d, A2-S13e). The control demonstrably defeats the exact attack.
 
+![A2-S13a: the account lockout policy set on the endpoint (threshold 5, duration 15 minutes, observation window 15 minutes).](images/A2-S13a-account-lockout-policy.jpg)
+
+![A2-S13c: the target account before the attack, Lockout status False.](images/A2-S13c-lockout-before.jpg)
+
+![A2-S13d: after the attack, Lockout status True, the account is locked out.](images/A2-S13d-lockout-after.jpg)
+
+![A2-S13e: Windows event 4740, vic-computer locked out, with Caller Computer Name parrot naming the attacker.](images/A2-S13e-event4740-lockout.jpg)
+
 **Framework tags.** NIST AC-7 (unsuccessful logon attempts). CIS Control 6 (Access Control Management). MITRE ATT&CK mitigation M1036 (Account Use Policies) against T1110.
 
 ### 4.4 RDP Network Level Authentication (NLA)
@@ -90,6 +114,8 @@ This tells the manager: when rule 60204 (the brute-force correlation) fires, run
 **Change.** NLA was required for RDP by setting UserAuthentication to 1 under the RDP-Tcp registry key (HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp). With NLA required, a connection must authenticate before any session is created.
 
 **Verification.** The registry value read back as UserAuthentication : 1 (A2-S13b). The change applies to new RDP connections without a reboot.
+
+![A2-S13b: NLA required for RDP, UserAuthentication set to 1 under the RDP-Tcp registry key.](images/A2-S13b-rdp-nla-enabled.jpg)
 
 **Framework tags.** NIST AC-17 (remote access), IA-2 (identification and authentication). CIS Control 4 (Secure Configuration of Enterprise Assets). MITRE ATT&CK mitigation of exposed remote services.
 
